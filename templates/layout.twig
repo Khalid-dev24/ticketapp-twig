@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>{% block title %}TicketApp{% endblock %}</title>
+  <link rel="stylesheet" href="/assets/css/style.css" />
+</head>
+<body>
+  <header class="navbar">
+    <div class="container nav-content">
+      <h1 class="logo">🎫 TicketApp</h1>
+      <nav>
+        <a href="/">Home</a>
+        <a href="?page=dashboard">Dashboard</a>
+        <a href="?page=tickets">Tickets</a>
+        <a href="?page=login">Login</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    {% block content %}{% endblock %}
+  </main>
+
+  <footer class="footer">
+    <p>&copy; {{ "now"|date("Y") }} TicketApp. All rights reserved.</p>
+  </footer>
+  <script src="/assets/js/main.js"></script>
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    if (window.TicketApp && typeof window.TicketApp.init === 'function') {
+      window.TicketApp.init();
+    }
+  });
+</script>
+</body>
+</html>

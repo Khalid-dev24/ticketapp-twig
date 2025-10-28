@@ -1,0 +1,17 @@
+{
+    "name": "vv/ticketapp-twig",
+    "autoload": {
+        "psr-4": {
+            "Vv\\TicketappTwig\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "khalid-dev24",
+            "email": "khalidmisbaudeen04@gmail.com"
+        }
+    ],
+    "require": {
+        "twig/twig": "^3.21"
+    }
+}

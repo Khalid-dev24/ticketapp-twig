@@ -1,0 +1,43 @@
+{# templates/tickets.twig #}
+{% extends "layout.twig" %}
+
+{% block title %}Tickets | TicketApp{% endblock %}
+
+{% block content %}
+<section class="tickets-section">
+  <h2 class="section-title">Manage Tickets</h2>
+
+  <!-- CREATE / EDIT FORM (client-side) -->
+  <form id="ticketForm" class="ticket-form" onsubmit="return TicketApp.submitForm(event)">
+    <input type="hidden" id="ticketId" value="">
+
+    <div class="form-group">
+      <label for="title">Title <span>*</span></label>
+      <input id="title" type="text" required />
+    </div>
+
+    <div class="form-group">
+      <label for="status">Status <span>*</span></label>
+      <select id="status" required>
+        <option value="">-- Select Status --</option>
+        <option value="open">open</option>
+        <option value="in_progress">in_progress</option>
+        <option value="closed">closed</option>
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label for="description">Description</label>
+      <textarea id="description" rows="3"></textarea>
+    </div>
+
+    <button type="submit" class="btn-primary" id="saveBtn">Create Ticket</button>
+    <button type="button" class="btn-outline" id="resetBtn" onclick="TicketApp.resetForm()">Reset</button>
+
+    <div id="ticketMessage" class="toast" style="display:none;"></div>
+  </form>
+
+  <!-- LIST OF TICKETS -->
+  <div id="ticketsGrid" class="tickets-grid" aria-live="polite"></div>
+</section>
+{% endblock %}

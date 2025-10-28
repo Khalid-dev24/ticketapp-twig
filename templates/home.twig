@@ -1,0 +1,41 @@
+{% extends "layout.twig" %}
+
+{% block title %}Welcome | TicketApp{% endblock %}
+
+{% block content %}
+<section class="hero">
+  <div class="hero-content">
+    <h1 class="hero-title">Manage Your Tickets Easily 🎟️</h1>
+    <p class="hero-subtitle">
+      Simplify your workflow — create, view, and manage tickets seamlessly in one place.
+    </p>
+    <div class="hero-buttons">
+      <a href="/signup" class="btn-primary">Get Started</a>
+      <a href="/login" class="btn-outline">Login</a>
+    </div>
+  </div>
+
+  <!-- Decorative elements -->
+  <div class="decorative-circle"></div>
+  <svg class="wave-svg" viewBox="0 0 1440 320">
+    <path fill="#f3f4f6" fill-opacity="1"
+      d="M0,224L48,197.3C96,171,192,117,288,117.3C384,117,480,171,576,176C672,181,768,139,864,122.7C960,107,1056,117,1152,138.7C1248,160,1344,192,1392,208L1440,224V320H0Z">
+    </path>
+  </svg>
+</section>
+
+<section class="features">
+  <div class="feature-card">
+    <h3>🎫 Create Tickets</h3>
+    <p>Easily create and organize your tickets in one intuitive interface.</p>
+  </div>
+  <div class="feature-card">
+    <h3>📊 Track Progress</h3>
+    <p>Stay on top of open, in-progress, and closed tickets with clarity.</p>
+  </div>
+  <div class="feature-card">
+    <h3>🔒 Secure Access</h3>
+    <p>All your ticket data is safe with secure authentication and session control.</p>
+  </div>
+</section>
+{% endblock %}

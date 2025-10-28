@@ -1,0 +1,31 @@
+{% extends "layout.twig" %}
+
+{% block title %}Dashboard | TicketApp{% endblock %}
+
+{% block content %}
+<section class="dashboard">
+  <h2 class="dashboard-title">Dashboard Overview</h2>
+
+  <div class="stats-grid">
+    <div class="stat-card open">
+      <h3>Total Tickets</h3>
+      <p>{{ total_tickets|default(0) }}</p>
+    </div>
+
+    <div class="stat-card in-progress">
+      <h3>Open Tickets</h3>
+      <p>{{ open_tickets|default(0) }}</p>
+    </div>
+
+    <div class="stat-card closed">
+      <h3>Resolved Tickets</h3>
+      <p>{{ closed_tickets|default(0) }}</p>
+    </div>
+  </div>
+
+  <div class="dashboard-actions">
+    <a href="/tickets" class="btn-primary">Manage Tickets</a>
+    <a href="/logout" class="btn-outline">Logout</a>
+  </div>
+</section>
+{% endblock %}
