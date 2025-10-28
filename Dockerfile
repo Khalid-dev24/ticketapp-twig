@@ -1,7 +1,7 @@
-# Use an official PHP runtime as a parent image
-FROM php:8.1-cli
+# Use official PHP image
+FROM php:8.2-cli
 
-# Install dependencies
+# Install GD (optional)
 RUN apt-get update && apt-get install -y \
     libpng-dev \
     libjpeg-dev \
@@ -9,20 +9,20 @@ RUN apt-get update && apt-get install -y \
     && docker-php-ext-configure gd --with-freetype --with-jpeg \
     && docker-php-ext-install gd
 
-# Set the working directory
+# Set working directory
 WORKDIR /app
 
-# Copy the current directory contents into the container at /app
-COPY . /app
+# Copy project files
+COPY . .
 
-# Install Composer
-RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
+# Install Composer (copy from Composer image)
+COPY --from=composer:2 /usr/bin/composer /usr/bin/composer
 
 # Install PHP dependencies
-RUN composer install --no-dev
+RUN composer install --no-dev --optimize-autoloader
 
-# Expose port 8080
-EXPOSE 8080
+# Expose Render port
+ENV PORT 10000
 
-# Command to run the application
-CMD ["php", "-S", "0.0.0.0:8080", "-t", "public"]
+# Start PHP server
+CMD ["php", "-S", "0.0.0.0:10000", "-t", "public"]
