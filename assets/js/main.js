@@ -151,4 +151,39 @@ window.TicketApp = {
       messageEl.style.display = "none";
     }, 3000);
   },
+  
 };
+
+// Handle login and signup
+document.addEventListener("DOMContentLoaded", () => {
+  const signupForm = document.getElementById("signupForm");
+  const loginForm = document.getElementById("loginForm");
+
+  if (signupForm) {
+    signupForm.addEventListener("submit", async (e) => {
+      e.preventDefault();
+      const formData = new FormData(signupForm);
+      const res = await fetch("signup.php", { method: "POST", body: formData });
+      const data = await res.json();
+
+      alert(data.message);
+      if (data.success) window.location.href = "login.php";
+    });
+  }
+
+  if (loginForm) {
+    loginForm.addEventListener("submit", async (e) => {
+      e.preventDefault();
+      const formData = new FormData(loginForm);
+      const res = await fetch("login.php", { method: "POST", body: formData });
+      const data = await res.json();
+
+      alert(data.message);
+      if (data.success) {
+        localStorage.setItem("ticketapp_session", "active");
+        window.location.href = "../dashboard/index.php";
+      }
+    });
+  }
+});
+

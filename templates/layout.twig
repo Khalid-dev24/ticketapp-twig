@@ -15,6 +15,10 @@
         <a href="?page=dashboard">Dashboard</a>
         <a href="?page=tickets">Tickets</a>
         <a href="?page=login">Login</a>
+        {% if session.user %}
+          <a href="?page=logout" class="nav-link">Logout</a>
+        {% endif %}
+
       </nav>
     </div>
   </header>
