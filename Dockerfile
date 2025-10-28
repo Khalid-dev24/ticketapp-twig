@@ -1,7 +1,7 @@
 # Use official PHP CLI image
 FROM php:8.2-cli
 
-# Optional: install GD if needed for images
+# Install GD (optional)
 RUN apt-get update && apt-get install -y \
     libpng-dev \
     libjpeg-dev \
@@ -12,18 +12,21 @@ RUN apt-get update && apt-get install -y \
 # Set working directory
 WORKDIR /app
 
-# Copy Composer files first
+# Copy composer files first
 COPY composer.json composer.lock ./
 
 # Install Composer
-RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer \
+RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
+
+# Install PHP dependencies (fresh)
+RUN composer clear-cache \
     && composer install --no-dev --optimize-autoloader --prefer-dist --no-scripts --no-interaction
 
-# Copy the rest of the project
+# Copy rest of the project
 COPY . .
 
-# Render expects this environment variable
+# Expose Render port
 ENV PORT 10000
 
-# Start PHP server
+# Start PHP built-in server
 CMD ["php", "-S", "0.0.0.0:10000", "-t", "public"]
